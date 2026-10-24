@@ -1,0 +1,17 @@
+﻿services:
+  postgres:
+    image: postgres:17
+    container_name: postgres-transporte
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: transporte_arequipa
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./initdb:/docker-entrypoint-initdb.d:ro
+
+volumes:
+  postgres_data:
